@@ -1,7 +1,20 @@
-const express =require ("express")
-const app=express();
+console.clear()
+const express = require('express')
+const app = express()
 
-app.get("/", (req, res)=>{
-    res.send("<h1>Hola Mundo</h1>")
+//settings
+app.set('port', 3000)
+
+//middleware
+
+app.use(express.json())
+
+
+//routes
+app.get('/', (req,res)=>{
+    console.log('hello')
 })
-app.listen(3000, ()=>console.log("listenging onport 3000"))
+app.get('/:name'),(req, res)=>{
+    res.send(`hola ${req.params.name} here we go`)
+}
+app.listen(app.get('port'))
