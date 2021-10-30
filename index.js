@@ -1,5 +1,6 @@
 console.clear()
 const express =require('express')
+const bodyParser =require('body-parser')
 const app = express()
 
 //middleware
@@ -11,12 +12,14 @@ app.use(logger)
 //ponemos statis para que no moleste con el archivo principal
 //la ruta de entrada seria localhost:3000/static
 app.use('/static',express.static('public'))
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser(express.urlencoded({ extended: true })))
+app.use(bodyParser.json())
 //******************** 
+
 //settings
 
 app.set('port', 3000)
-//creacion para pug
+//creacion pug
 app.set('view engine', 'pug')
 app.set('views', 'views')
 //*********************** 
@@ -29,22 +32,22 @@ app.get('/', (req, res)=>{
 
 })
 
-app.get('/users/:name', (req, res)=>{
-    const name=req.params.name
-    res.render('index', {name})
+//rutas del formulario
+app.get('/notes/new', (req, res)=>{
+    res.render('new')
+   
+})
+app.post('/notes', (req,res)=>{
+    console.log(req.body)
+    res.redirect('/')
 
 })
-//rutas del formulario
-app.get('/notes/formulario', (req, res)=>{
-    res.render('formulario')
+
+
    
-})
-app.post('/notes', (req, res)=>{
-    console.log(req.body)
-    res.send('GET request to the homepage')
-    res.redirect('/')
-    res.end()
-   
+  app.get('/users/:name', (req, res)=>{
+    const name=req.params.name
+    res.render('index', {name})
 
 })
 
