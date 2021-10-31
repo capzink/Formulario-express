@@ -3,7 +3,34 @@ extends layout
 
 block content 
     form(action ='/notes', method='post')
-    label(for='name') Titulo 
-    input(type = 'text' id='name' name='name')
-    button(type='submit') Submit
+        div
+            label(for='title') Titulo 
+            input(type = 'title' id='title' name='title')
+        
+    
+        div
+            label(for='password') Password
+            input(type = 'Password' id='Password' name='Password')
+        div
+            label(for='body') Texto 
+            textarea(type = 'body' id='body' name='body' rows="8")
+        div
+            label(for='country') Country 
+            select(id='country' name='country')
+                option(calur="CO") Colombia
+                option(calur="MX") Mexico
+                option(calur="PE") Peru
+                option(calur="CL") Chile
+
+        div     
+            input(type="radio", id='gender-male' name="gender", value="male", checked="true")
+            label(for="gender-male") Hombre
+            input(type="radio", id='gender-female' name="gender", value="female")
+            label(for="gender-female") Mujer
+
+        div
+            input(type="checkbox", id="terms", name="terms")
+            label(for="temrs") Accept Terms and Conditions
+        
+        button(type='submit') Submit
 
